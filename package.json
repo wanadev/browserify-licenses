@@ -1,0 +1,31 @@
+{
+  "name": "browserify-licenses",
+  "version": "0.1.0",
+  "description": "Extracts licenses of third party modules used in a browserify bundle",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "jshint app/*.js bin/*"
+  },
+  "keywords": [
+    "browserify",
+    "license"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wanadev/browserify-licenses.git"
+  },
+  "author": "Wanadev",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "arg-parser": "^1.2.0",
+    "browserify": "^13.0.1",
+    "chalk": "^1.1.3",
+    "lodash": "^4.13.1",
+    "q": "^1.4.1",
+    "table": "^3.7.8",
+    "through2": "^2.0.1"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.2"
+  }
+}

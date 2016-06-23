@@ -1,0 +1,18 @@
+{
+  "futurehostile": true,
+  "freeze": true,
+  "latedef": false,
+  "noarg": true,
+  "nocomma": true,
+  "nonbsp": true,
+  "nonew": true,
+  "undef": true,
+  "shadow": false,
+  "esnext": true,
+  "loopfunc": true,
+  "newcap": false,
+  "node": true,
+  "globals": {
+      "console": false
+  }
+}

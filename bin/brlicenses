@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+
+"use strict";
+
+const Args = require("arg-parser");
+
+const brlicenses = require("../app");
+const pkg = require("../package.json");
+
+var args = new Args("Browserify License Extractor", pkg.version, pkg.description);
+
+args.add({
+    name: "source",
+    desc: "Source type (currently, only 'browserify' (default) is supported)",
+    switches: ["-s", "--source"],
+    value: "source"
+});
+
+args.add({
+    name: "format",
+    desc: "Generated format ('table' (default), 'short', 'full')",
+    switches: ["-f", "--format"],
+    value: "format"
+});
+
+args.add({
+    name: "output",
+    desc: "Oputput file (default: stdout)",
+    switches: ["-o", "--output"],
+    value: "output"
+});
+
+args.add({
+    name: "input",
+    desc: "Input file (entry point of the app)",
+    value: "file",
+    required: true
+});
+
+args.parse();
+
+var options = {};
+if (args.params.source) options.source = args.params.source;
+if (args.params.format) options.format = args.params.format;
+if (args.params.output) {
+    options.output = "file";
+    options.outputFile = args.params.output;
+}
+
+brlicenses(args.params.input, options);
