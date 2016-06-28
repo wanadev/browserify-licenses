@@ -47,4 +47,8 @@ if (args.params.output) {
     options.outputFile = args.params.output;
 }
 
-brlicenses(args.params.input, options);
+brlicenses(args.params.input, options)
+    .catch(function(error) {
+        console.error(error);
+        process.exit(1);
+    });

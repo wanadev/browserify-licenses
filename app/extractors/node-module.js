@@ -5,7 +5,7 @@ const fs = require("fs");
 
 const Q = require("q");
 
-function _extractPackageInformations(modules) {
+function _getPackageJsonInformations(modules) {
     for (let i = 0 ; i < modules.length ; i++) {
         let module = modules[i];
         let pkg = require(path.join(module.path, "package.json"));
@@ -61,13 +61,11 @@ function _readLicenseText(modules) {
     return modules;
 }
 
-function collectInformations(modules) {
+function extractorNodeModule(modules) {
     return Q(modules)
-        .then(_extractPackageInformations)
+        .then(_getPackageJsonInformations)
         .then(_findLicenseFiles)
         .then(_readLicenseText);
 }
 
-module.exports = {
-    collectInformations: collectInformations
-};
+module.exports = extractorNodeModule;

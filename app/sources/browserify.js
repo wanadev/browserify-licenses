@@ -5,7 +5,9 @@ const through = require("through2");
 const Q = require("q");
 const lodash = require("lodash");
 
-function _browserifyListBundledFiles(entryPointPath) {
+const extractors = require("../extractors");
+
+function _listBundledFiles(entryPointPath) {
     return Q.Promise(function(resolve, reject) {
         var files = [];
         var b = browserify();
@@ -52,10 +54,9 @@ function _fileListToModule(files) {
 
 function sourceBrowserify(entryPointPath) {
     return Q(entryPointPath)
-        .then(_browserifyListBundledFiles)
-        .then(_fileListToModule);
+        .then(_listBundledFiles)
+        .then(_fileListToModule)
+        .then(extractors.nodeModule);
 }
 
-module.exports = {
-    browserify: sourceBrowserify
-};
+module.exports = sourceBrowserify;
