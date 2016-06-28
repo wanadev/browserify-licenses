@@ -8,7 +8,7 @@ bundled, and then it extracts the corresponding licenses to various formats.
 
 ## Install
 
-    npm install -g browserify-license
+    npm install -g browserify-licenses
 
 
 ## Usage
