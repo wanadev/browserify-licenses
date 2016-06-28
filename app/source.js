@@ -38,7 +38,9 @@ function _fileListToModule(files) {
             version: null,
             license: null,
             licenseFile: null,
-            licenseText: null
+            licenseText: null,
+            noticeFile: null,
+            noticeText: null
         };
         if (!modulePaths[module.path]) {
             modulePaths[module.path] = true;

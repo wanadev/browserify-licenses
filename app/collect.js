@@ -24,8 +24,6 @@ function _extractPackageInformations(modules) {
             }
         } else if (pkg.license && typeof(pkg.license) == "object") {
             module.license = pkg.license.type || pkg.license.name;
-        } else {
-            module.license = "?";
         }
 
     }
@@ -40,10 +38,10 @@ function _findLicenseFiles(modules) {
         for (var j = 0 ; j < files.length ; j++) {
             if (files[j].match(/(LICENSE|LICENCE|COPYING)/i)) {
                 module.licenseFile = files[j];
-                if (module.hasOwnProperty('noticeFile')) break;
+                if (module.noticeFile) break;
             } else if (files[j].match(/NOTICE/i)) {
                 module.noticeFile = files[j];
-                if (module.hasOwnProperty('licenseFile')) break;
+                if (module.licenseFile) break;
             }
         }
     }
