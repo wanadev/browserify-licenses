@@ -18,7 +18,7 @@ args.add({
 
 args.add({
     name: "format",
-    desc: "Generated format ('table' (default), 'short', 'full')",
+    desc: "Generated format ('table' (default), 'short', 'full', 'json')",
     switches: ["-f", "--format"],
     value: "format"
 });

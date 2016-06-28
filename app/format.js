@@ -95,8 +95,13 @@ function formatFull(modules) {
     return licenses.join("\n\n\n\n");
 }
 
+function formatJson(modules) {
+    return JSON.stringify(modules, null, 2);
+}
+
 module.exports = {
     table: formatTable,
     short: formatShort,
-    full: formatFull
+    full: formatFull,
+    json: formatJson
 };
