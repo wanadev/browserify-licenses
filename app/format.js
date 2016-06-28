@@ -19,7 +19,8 @@ function formatTable(modules) {
         chalk.cyan.bold("Module Name"),
         chalk.cyan.bold("Version"),
         chalk.cyan.bold("License"),
-        chalk.cyan.bold("License File")
+        chalk.cyan.bold("License File"),
+        chalk.cyan.bold("Notice File")
     ]);
 
     for (let i = 0 ; i < modules.length ; i++) {
@@ -28,7 +29,8 @@ function formatTable(modules) {
             chalk.bold(module.name),
             module.version,
             (module.license.match(/bsd|mit|apache|isc/i)) ? module.license : chalk.yellow(module.license),
-            module.licenseFile ? chalk.green("Yes") : chalk.red("No")
+            module.licenseFile ? chalk.green("Yes") : chalk.red("No"),
+            module.noticeFile ? chalk.green("Yes") : "No"
         ]);
     }
 
@@ -50,6 +52,13 @@ function formatFull(modules) {
         result += `${module.name} ${module.version} - License ${module.license}\n`;
         result += `downloaded from <https://www.npmjs.com/package/${module.name}>\n`;
         result += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
+        if (module.noticeText) {
+            result += module.noticeText;
+            if (module.noticeText[module.noticeText.length-1] !== "\n") {
+                result += "\n";
+            }
+            result += "\n";
+        }
         if (module.licenseText) {
             result += module.licenseText;
             if (module.licenseText[module.licenseText.length-1] !== "\n") {

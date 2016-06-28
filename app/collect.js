@@ -32,7 +32,7 @@ function _extractPackageInformations(modules) {
     return modules;
 }
 
-function _findLicenseFile(modules) {
+function _findLicenseFiles(modules) {
     for (let i = 0 ; i < modules.length ; i++) {
         let module = modules[i];
         var files = fs.readdirSync(module.path);
@@ -40,7 +40,10 @@ function _findLicenseFile(modules) {
         for (var j = 0 ; j < files.length ; j++) {
             if (files[j].match(/(LICENSE|LICENCE|COPYING)/i)) {
                 module.licenseFile = files[j];
-                break;
+                if (module.hasOwnProperty('noticeFile')) break;
+            } else if (files[j].match(/NOTICE/i)) {
+                module.noticeFile = files[j];
+                if (module.hasOwnProperty('licenseFile')) break;
             }
         }
     }
@@ -50,10 +53,12 @@ function _findLicenseFile(modules) {
 function _readLicenseText(modules) {
     for (let i = 0 ; i < modules.length ; i++) {
         let module = modules[i];
-        if (!module.licenseFile) {
-            continue;
+        if (module.licenseFile) {
+            module.licenseText = fs.readFileSync(path.join(module.path, module.licenseFile)).toString().replace(/\r?\n/g, "\n");
         }
-        module.licenseText = fs.readFileSync(path.join(module.path, module.licenseFile)).toString().replace(/\r?\n/g, "\n");
+        if (module.noticeFile) {
+            module.noticeText = fs.readFileSync(path.join(module.path, module.noticeFile)).toString().replace(/\r?\n/g, "\n");
+        }
     }
     return modules;
 }
@@ -61,7 +66,7 @@ function _readLicenseText(modules) {
 function collectInformations(modules) {
     return Q(modules)
         .then(_extractPackageInformations)
-        .then(_findLicenseFile)
+        .then(_findLicenseFiles)
         .then(_readLicenseText);
 }
 
