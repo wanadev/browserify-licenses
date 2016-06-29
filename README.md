@@ -13,18 +13,36 @@ bundled, and then it extracts the corresponding licenses to various formats.
 
 ## Usage
 
-    brlicenses [options] <input>
+    Usage: brlicenses [options]
 
-    <input>               Input file (entry point of the app)
+    Options:
+        --browserify, -b  Extract licenses used in a bundle using Browserify to find
+                          included modules (this option can be ommited)
+        --modules, -m     Extract licenses of the given modules
+        --json, -j        Extract licenses of the given JSON files (previously
+                          generated with the --format=json option)
+        --format, -f      Output format [choices: "table", "short", "full", "json"]
+                          [default: "table"]
+        --output, -o      Output file (print to stdout by default)
+        --ignore, -i      Ingore the given modules in the output
+        --version, -v     Show version number
+        --help, -h        Show help
 
-    -f, --format=FORMAT   Generated format ('table' (default), 'short', 'full')
-    -h, --help            display help & usage
-    -o, --output=OUTPUT   Oputput file (default: stdout)
-    -s, --source=SOURCE   Source type (currently, only 'browserify' (default) is supported)
-    -v, --version         display cli name & version
+
+## Examples
+
+    brlicenses app/index.js
+    brlicenses --browserify app/index.js  # equivalent to the previous one
+
+    brlicenses --modules lodash q abitbol
+
+    brlicenses app/index.js \
+        --json additional-licenses.json \
+        --format=full \
+        --output=CREDITS.txt
 
 
-## Examples:
+## Sample Output
 
 Table formatting (to get a quick overview):
 
@@ -49,7 +67,7 @@ Full output includes complete license:
     brlicenses --format=full app/index.js
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    abitbol 1.0.3 - License BSD-3-Clause
+    abitbol v1.0.3 - License BSD-3-Clause
     downloaded from <https://www.npmjs.com/package/abitbol>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Copyright (c) 2015, Wanadev <http://www.wanadev.fr/>
@@ -82,7 +100,7 @@ Full output includes complete license:
 
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    keyboardjs 0.4.3 - License BSD License
+    keyboardjs v0.4.3 - License BSD License
     downloaded from <https://www.npmjs.com/package/keyboardjs>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Copyright 2011 Robert Hurst. All rights reserved.
