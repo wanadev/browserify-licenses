@@ -44,11 +44,11 @@ var argv = yargs
         //normalize: true
     //})
 
-    //.option("ignore", {
-        //describe: "Ingore the given modules in the output",
-        //alias: "i",
-        //type: "array"
-    //})
+    .option("ignore", {
+        describe: "Ingore the given modules in the output",
+        alias: "i",
+        type: "array"
+    })
 
     .version(pkg.version).alias("version", "v")
     .usage("Usage: brlicenses [options]")

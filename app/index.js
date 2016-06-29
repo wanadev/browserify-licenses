@@ -28,9 +28,16 @@ function _source(browserify, modules, json) {
         });
 }
 
+function _filterIgnored(ignored, modules) {
+    if (!ignored) {
+        return modules;
+    }
+    return lodash.filter(modules, m => !lodash.includes(ignored, m.name));
+}
+
 module.exports = function(options) {
     return _source(options.browserify, options.modules, options.json)
-        // TODO ignore
+        .then(_filterIgnored.bind(undefined, options.ignore))
         .then(formats[options.format])
         .then(writers.stdout);  //FIXME
 };
