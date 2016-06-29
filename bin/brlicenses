@@ -16,11 +16,11 @@ var argv = yargs
         normalize: true
     })
 
-    //.option("modules", {
-        //describe: "Extract licenses of the given modules",
-        //alias: "m",
-        //type: "array"
-    //})
+    .option("modules", {
+        describe: "Extract licenses of the given modules",
+        alias: "m",
+        type: "array"
+    })
 
     //.option("json", {
         //describe: "Extract licenses of the given JSON files (previously generated with the --format=json option)",

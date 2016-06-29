@@ -1,5 +1,6 @@
 "use strict";
 
 module.exports = {
-    browserify: require("./browserify.js")
+    browserify: require("./browserify.js"),
+    modules: require("./modules.js")
 };
