@@ -6,6 +6,7 @@ const Q = require("q");
 const lodash = require("lodash");
 
 const extractors = require("../extractors");
+const helpers = require("../helpers.js");
 
 function _listBundledFiles(entryPointsPath) {
     return Q.Promise(function(resolve, reject) {
@@ -36,16 +37,10 @@ function _fileListToModule(files) {
             continue;
         }
         let file = files[i];
-        let module = {
+        let module = helpers.newModule({
             name: file.replace(/^(.*node_modules\/([^/]+)\/).*$/, "$2"),
             path: file.replace(/^(.*node_modules\/([^/]+)\/).*$/, "$1"),
-            version: null,
-            license: null,
-            licenseFile: null,
-            licenseText: null,
-            noticeFile: null,
-            noticeText: null
-        };
+        });
         if (!modulePaths[module.path]) {
             modulePaths[module.path] = true;
             modules.push(module);
