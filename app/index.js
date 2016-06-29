@@ -42,5 +42,5 @@ module.exports = function(options) {
         .then(_filterIgnored.bind(undefined, options.ignore))
         .then(_sort)
         .then(formats[options.format])
-        .then(writers.stdout);  //FIXME
+        .then(options.output ? writers.file.bind(undefined, options.output) : writers.stdout);
 };

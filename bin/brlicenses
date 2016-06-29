@@ -3,6 +3,7 @@
 "use strict";
 
 const yargs = require("yargs");
+const chalk = require("chalk");
 
 const brlicenses = require("../app");
 const pkg = require("../package.json");
@@ -38,12 +39,12 @@ var argv = yargs
         nargs: 1
     })
 
-    //.option("output", {
-        //describe: "Output file (print to stdout by default)",
-        //alias: "o",
-        //nargs: 1,
-        //normalize: true
-    //})
+    .option("output", {
+        describe: "Output file (print to stdout by default)",
+        alias: "o",
+        nargs: 1,
+        normalize: true
+    })
 
     .option("ignore", {
         describe: "Ingore the given modules in the output",
@@ -71,6 +72,10 @@ if (argv._.length > 0) {
     } else {
         argv.browserify = argv.browserify.concat(argv._);
     }
+}
+
+if (argv.output) {
+    chalk.enabled = false;
 }
 
 brlicenses(argv)

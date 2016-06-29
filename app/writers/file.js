@@ -2,8 +2,14 @@
 
 const fs = require("fs");
 
-function writerFile(file, text) {
-    throw new Error("NotImplementedError"); //TODO
+const Q = require("q");
+
+function writerFile(filePath, text) {
+    var fd = fs.openSync(filePath, "w");
+    fs.writeSync(fd, text);
+    fs.close(fd);
+    return Q(text);
+
 }
 
 module.exports = writerFile;
