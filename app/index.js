@@ -23,9 +23,7 @@ function _source(browserify, modules, json) {
     }
 
     return Q.all(sourcePromises)
-        .then(function (results) {
-            return lodash.flatten(results);
-        });
+        .then(results => lodash.flatten(results));
 }
 
 function _filterIgnored(ignored, modules) {

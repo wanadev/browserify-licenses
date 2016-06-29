@@ -23,12 +23,12 @@ var argv = yargs
         type: "array"
     })
 
-    //.option("json", {
-        //describe: "Extract licenses of the given JSON files (previously generated with the --format=json option)",
-        //alias: "j",
-        //type: "array",
-        //normalize: true
-    //})
+    .option("json", {
+        describe: "Extract licenses of the given JSON files (previously generated with the --format=json option)",
+        alias: "j",
+        type: "array",
+        normalize: true
+    })
 
     .option("format", {
         describe: "Output format",
