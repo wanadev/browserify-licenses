@@ -6,6 +6,7 @@ const yargs = require("yargs");
 
 const brlicenses = require("../app");
 const pkg = require("../package.json");
+const formats = require("../app/formats");
 
 var argv = yargs
 
@@ -32,7 +33,7 @@ var argv = yargs
     .option("format", {
         describe: "Output format",
         alias: "f",
-        choices: ["table", "short", "full", "json"],
+        choices: Object.keys(formats),
         default: "table",
         nargs: 1
     })

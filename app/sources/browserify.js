@@ -46,7 +46,7 @@ function _fileListToModule(files) {
             modules.push(module);
         }
     }
-    return lodash.sortBy(modules, "name");
+    return modules;
 }
 
 function sourceBrowserify(entryPointsPath) {

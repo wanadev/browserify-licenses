@@ -35,9 +35,14 @@ function _filterIgnored(ignored, modules) {
     return lodash.filter(modules, m => !lodash.includes(ignored, m.name));
 }
 
+function _sort(modules) {
+    return lodash.sortBy(modules, "name");
+}
+
 module.exports = function(options) {
     return _source(options.browserify, options.modules, options.json)
         .then(_filterIgnored.bind(undefined, options.ignore))
+        .then(_sort)
         .then(formats[options.format])
         .then(writers.stdout);  //FIXME
 };

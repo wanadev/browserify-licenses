@@ -7,7 +7,7 @@ const Q = require("q");
 const extractors = require("../extractors");
 const helpers = require("../helpers.js");
 
-function _ModuleListToModule(moduleList) {
+function _moduleListToModule(moduleList) {
     var modules = [];
 
     for (let i = 0 ; i < moduleList.length ; i++) {
@@ -22,7 +22,7 @@ function _ModuleListToModule(moduleList) {
 
 function sourceModules(moduleList) {
     return Q(moduleList)
-        .then(_ModuleListToModule)
+        .then(_moduleListToModule)
         .then(extractors.nodeModule);
 }
 
