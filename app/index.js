@@ -7,15 +7,30 @@ const sources = require("./sources");
 const formats = require("./formats");
 const writers = require("./writers");
 
-module.exports = function(input, options) {
-    options = lodash.merge({
-        source: "browserify",
-        format: "table",
-        output: "stdout",
-        outputFile: null
-    }, options || {});
-    return Q(input)
-        .then(sources[options.source])
+function _source(browserify, modules, json) {
+    var sourcePromises = [];
+
+    if (browserify) {
+        sourcePromises.push(sources.browserify(browserify));
+    }
+
+    if (modules) {
+        sourcePromises.push(sources.modules(modules));
+    }
+
+    if (json) {
+        sourcePromises.push(sources.json(json));
+    }
+
+    return Q.all(sourcePromises)
+        .then(function (results) {
+            return lodash.flatten(results);
+        });
+}
+
+module.exports = function(options) {
+    return _source(options.browserify, options.modules, options.json)
+        // TODO ignore
         .then(formats[options.format])
-        .then(writers[options.output]);
+        .then(writers.stdout);  //FIXME
 };

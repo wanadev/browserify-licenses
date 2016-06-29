@@ -2,53 +2,79 @@
 
 "use strict";
 
-const Args = require("arg-parser");
+const yargs = require("yargs");
 
 const brlicenses = require("../app");
 const pkg = require("../package.json");
 
-var args = new Args("Browserify License Extractor", pkg.version, pkg.description);
+var argv = yargs
 
-args.add({
-    name: "source",
-    desc: "Source type (currently, only 'browserify' (default) is supported)",
-    switches: ["-s", "--source"],
-    value: "source"
-});
+    .option("browserify", {
+        describe: "Extract licenses used in a bundle using Browserify to find included modules (this option can be ommited)",
+        alias: "b",
+        type: "array",
+        normalize: true
+    })
 
-args.add({
-    name: "format",
-    desc: "Generated format ('table' (default), 'short', 'full', 'json')",
-    switches: ["-f", "--format"],
-    value: "format"
-});
+    //.option("modules", {
+        //describe: "Extract licenses of the given modules",
+        //alias: "m",
+        //type: "array"
+    //})
 
-args.add({
-    name: "output",
-    desc: "Oputput file (default: stdout)",
-    switches: ["-o", "--output"],
-    value: "output"
-});
+    //.option("json", {
+        //describe: "Extract licenses of the given JSON files (previously generated with the --format=json option)",
+        //alias: "j",
+        //type: "array",
+        //normalize: true
+    //})
 
-args.add({
-    name: "input",
-    desc: "Input file (entry point of the app)",
-    value: "file",
-    required: true
-});
+    .option("format", {
+        describe: "Output format",
+        alias: "f",
+        choices: ["table", "short", "full", "json"],
+        default: "table",
+        nargs: 1
+    })
 
-args.parse();
+    //.option("output", {
+        //describe: "Output file (print to stdout by default)",
+        //alias: "o",
+        //nargs: 1,
+        //normalize: true
+    //})
 
-var options = {};
-if (args.params.source) options.source = args.params.source;
-if (args.params.format) options.format = args.params.format;
-if (args.params.output) {
-    options.output = "file";
-    options.outputFile = args.params.output;
+    //.option("ignore", {
+        //describe: "Ingore the given modules in the output",
+        //alias: "i",
+        //type: "array"
+    //})
+
+    .version(pkg.version).alias("version", "v")
+    .usage("Usage: brlicenses [options]")
+    .help().alias("help", "h")
+    .example("brlicenses app/index.js")
+    .example("brlicenses --modules lodash q abitbol")
+    .example("brlicenses app/index.js \\\n --json additional-licenses.json \\\n --format=full \\\n --output=CREDITS.txt")
+    .locale("en")
+    .argv;
+
+if (!argv.browserify && !argv.modules && !argv.json && argv._.length === 0) {
+    yargs.showHelp();
+    process.exit(1);
 }
 
-brlicenses(args.params.input, options)
+if (argv._.length > 0) {
+    if (!argv.browserify) {
+        argv.browserify = argv._;
+    } else {
+        argv.browserify = argv.browserify.concat(argv._);
+    }
+}
+
+brlicenses(argv)
     .catch(function(error) {
         console.error(error);
         process.exit(1);
     });
+

@@ -7,11 +7,13 @@ const lodash = require("lodash");
 
 const extractors = require("../extractors");
 
-function _listBundledFiles(entryPointPath) {
+function _listBundledFiles(entryPointsPath) {
     return Q.Promise(function(resolve, reject) {
         var files = [];
         var b = browserify();
-        b.add(entryPointPath);
+        for (let i = 0 ; i < entryPointsPath.length ; i++) {
+            b.add(entryPointsPath[i]);
+        }
         b.pipeline.get("deps").push(through.obj(function(row, enc, next) {
             files.push(row.file);
             next();
@@ -52,8 +54,8 @@ function _fileListToModule(files) {
     return lodash.sortBy(modules, "name");
 }
 
-function sourceBrowserify(entryPointPath) {
-    return Q(entryPointPath)
+function sourceBrowserify(entryPointsPath) {
+    return Q(entryPointsPath)
         .then(_listBundledFiles)
         .then(_fileListToModule)
         .then(extractors.nodeModule);
