@@ -1,5 +1,7 @@
 "use strict";
 
+var path = require("path");
+
 var lodash = require("lodash");
 
 function newModule(data) {
@@ -15,6 +17,11 @@ function newModule(data) {
         }, data || {});
 }
 
+function getModulePath(moduleName) {
+    return path.dirname(require.resolve(`${moduleName}/package.json`));
+}
+
 module.exports = {
-    newModule: newModule
+    newModule: newModule,
+    getModulePath: getModulePath
 };
