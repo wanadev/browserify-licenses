@@ -7,11 +7,11 @@ const sources = require("./sources");
 const formats = require("./formats");
 const writers = require("./writers");
 
-function _source(browserify, modules, json) {
+function _source(browserify, modules, json, ignore) {
     var sourcePromises = [];
 
     if (browserify) {
-        sourcePromises.push(sources.browserify(browserify));
+        sourcePromises.push(sources.browserify(browserify, ignore));
     }
 
     if (modules) {
@@ -38,7 +38,7 @@ function _sort(modules) {
 }
 
 module.exports = function(options) {
-    return _source(options.browserify, options.modules, options.json)
+    return _source(options.browserify, options.modules, options.json, options.ignore)
         .then(_filterIgnored.bind(undefined, options.ignore))
         .then(_sort)
         .then(formats[options.format])

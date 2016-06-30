@@ -8,10 +8,15 @@ const lodash = require("lodash");
 const extractors = require("../extractors");
 const helpers = require("../helpers.js");
 
-function _listBundledFiles(entryPointsPath) {
+function _listBundledFiles(entryPointsPath, ignore) {
     return Q.Promise(function(resolve, reject) {
         var files = [];
         var b = browserify();
+        if (ignore) {
+            for (let i = 0 ; i < ignore.length ; i++) {
+                b.exclude(ignore[i]);
+            }
+        }
         for (let i = 0 ; i < entryPointsPath.length ; i++) {
             b.add(entryPointsPath[i]);
         }
@@ -49,9 +54,8 @@ function _fileListToModule(files) {
     return modules;
 }
 
-function sourceBrowserify(entryPointsPath) {
-    return Q(entryPointsPath)
-        .then(_listBundledFiles)
+function sourceBrowserify(entryPointsPath, ignore) {
+    return _listBundledFiles(entryPointsPath, ignore)
         .then(_fileListToModule)
         .then(extractors.nodeModule);
 }
