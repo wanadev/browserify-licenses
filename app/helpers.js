@@ -13,7 +13,8 @@ function newModule(data) {
             licenseFile: null,
             licenseText: null,
             noticeFile: null,
-            noticeText: null
+            noticeText: null,
+            website: null
         }, data || {});
 }
 

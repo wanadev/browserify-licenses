@@ -46,6 +46,7 @@ function _fileListToModule(files) {
             name: file.replace(/^(.*node_modules\/([^/]+)\/).*$/, "$2"),
             path: file.replace(/^(.*node_modules\/([^/]+)\/).*$/, "$1"),
         });
+        module.website = `https://www.npmjs.com/package/${module.name}`;
         if (!modulePaths[module.path]) {
             modulePaths[module.path] = true;
             modules.push(module);

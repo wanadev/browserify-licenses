@@ -9,7 +9,7 @@ function formatFull(modules) {
 
         result += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
         result += `${module.name} v${module.version} - License ${module.license || "Unknown"}\n`;
-        result += `downloaded from <https://www.npmjs.com/package/${module.name}>\n`;
+        result += `downloaded from <${module.website}>\n`;
         result += "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n";
         if (module.noticeText) {
             result += module.noticeText;

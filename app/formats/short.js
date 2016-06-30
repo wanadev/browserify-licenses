@@ -9,7 +9,7 @@ function formatShort(modules) {
         result += `${module.name} v${module.version}:\n`;
         result += "\n";
         result += `  License: ${module.license || "Unknown"}\n`;
-        result += `  downloaded from: https://www.npmjs.com/package/${module.name}\n`;
+        result += `  downloaded from: ${module.website}\n`;
         result += "\n\n";
     }
 

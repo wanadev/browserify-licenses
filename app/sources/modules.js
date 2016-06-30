@@ -37,7 +37,8 @@ function _moduleListToModule(moduleList) {
     for (let i = 0 ; i < moduleList.length ; i++) {
         modules.push(helpers.newModule({
             name: moduleList[i],
-            path: helpers.getModulePath(moduleList[i])
+            path: helpers.getModulePath(moduleList[i]),
+            website: `https://www.npmjs.com/package/${moduleList[i]}`
         }));
     }
 
