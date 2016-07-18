@@ -34,7 +34,7 @@ function _filterIgnored(ignored, modules) {
 }
 
 function _sort(modules) {
-    return lodash.sortBy(modules, "name");
+    return lodash.sortBy(modules, m => m.name.toLowerCase());
 }
 
 module.exports = function(options) {
