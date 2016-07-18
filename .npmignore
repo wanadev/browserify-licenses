@@ -1,2 +1,4 @@
 .jshintrc
 .tern-project
+test/
+.travis.yml
