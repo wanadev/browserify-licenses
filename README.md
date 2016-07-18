@@ -55,23 +55,22 @@ Table formatting (to get a quick overview):
     ┌─────────────┬─────────┬──────────────┬──────────────┐
     │ Module Name │ Version │ License      │ License File │
     ├─────────────┼─────────┼──────────────┼──────────────┤
-    │ abitbol     │ 1.0.3   │ BSD-3-Clause │ Yes          │
-    ├─────────────┼─────────┼──────────────┼──────────────┤
+    │ abitbol     │ 1.0.4   │ BSD-3-Clause │ Yes          │
     │ keyboardjs  │ 0.4.3   │ BSD License  │ Yes          │
-    ├─────────────┼─────────┼──────────────┼──────────────┤
-    │ lodash      │ 4.11.1  │ MIT          │ Yes          │
-    ├─────────────┼─────────┼──────────────┼──────────────┤
+    │ lodash      │ 4.13.1  │ MIT          │ Yes          │
+    │ photonui    │ 1.5.0   │ BSD-3-Clause │ Yes          │
     │ stonejs     │ 2.2.0   │ BSD-3-Clause │ Yes          │
-    ├─────────────┼─────────┼──────────────┼──────────────┤
     │ uuid        │ 2.0.2   │ MIT          │ Yes          │
     └─────────────┴─────────┴──────────────┴──────────────┘
+
+    6 modules
 
 Full output includes complete license:
 
     brlicenses --format=full app/index.js
 
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    abitbol v1.0.3 - License BSD-3-Clause
+    abitbol v1.0.4 - License BSD-3-Clause
     downloaded from <https://www.npmjs.com/package/abitbol>
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Copyright (c) 2015, Wanadev <http://www.wanadev.fr/>

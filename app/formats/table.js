@@ -7,7 +7,8 @@ const chalk = require("chalk");
 function formatTable(modules) {
     var data = [];
     var tableConfig = {
-        border: getBorderCharacters("norc")
+        border: getBorderCharacters("norc"),
+        drawHorizontalLine: (index, size) => index <= 1 || index == size
     };
     var stats = {
         moduleCount: modules.length,
