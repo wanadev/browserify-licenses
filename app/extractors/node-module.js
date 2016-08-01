@@ -2,7 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
-
+const spdxParse = require("spdx-expression-parse");
 const Q = require("q");
 
 function _getPackageJsonInformations(modules) {
@@ -12,8 +12,12 @@ function _getPackageJsonInformations(modules) {
 
         module.version = pkg.version;
 
+        module.licenseURLs = [];
         if (pkg.license && typeof pkg.license == "string") {
             module.license = pkg.license;
+            _getSpdxLicenseInformation(module.license).forEach(function(license) {
+                module.licenseURLs.push('https://spdx.org/licenses/' + license + '.html');
+            })
         }
         else if (pkg.license && Array.isArray(pkg.license) || pkg.licenses && Array.isArray(pkg.licenses)) {
             let licenses = (pkg.license) ? pkg.license : pkg.licenses;
@@ -21,9 +25,15 @@ function _getPackageJsonInformations(modules) {
             for (var j = 0 ; j < licenses.length ; j++) {
                 licenseList.push(licenses[j].type || licenses[j].name);
                 module.license = licenseList.join(" / ");
+                if (licenses[j].url) {
+                    module.licenseURLs.push(licenses[j].url);
+                }
             }
         } else if (pkg.license && typeof(pkg.license) == "object") {
             module.license = pkg.license.type || pkg.license.name;
+            if (pkg.license.url) {
+                module.licenseURLs.push(pkg.license.url);
+            }
         }
 
     }
@@ -46,6 +56,30 @@ function _findLicenseFiles(modules) {
         }
     }
     return modules;
+}
+
+function _getSpdxLicenseInformation(license) {
+    var licenses = [];
+    try {
+        var tree;
+        if (typeof license === 'string') {
+            tree = spdxParse(license);
+        } else {
+            tree = license;
+        }
+        if (tree.license) {
+            licenses.push(tree.license);
+        }
+        if (tree.left) {
+            licenses = licenses.concat(_getSpdxLicenseInformation(tree.left));
+        }
+        if (tree.right) {
+            licenses = licenses.concat(_getSpdxLicenseInformation(tree.right));
+        }
+    } catch(e) {
+        console.warn('Unable to parse license: ', license);
+    }
+    return licenses;
 }
 
 function _readLicenseText(modules) {
