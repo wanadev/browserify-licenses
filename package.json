@@ -4,7 +4,7 @@
   "description": "Extracts licenses of third party modules used in a browserify bundle",
   "main": "app/index.js",
   "scripts": {
-    "test": "jshint app/*.js bin/* test/*.js && mocha"
+    "test": "jshint app/*.js app/*/*.js bin/* test/*.js && mocha"
   },
   "keywords": [
     "browserify",
