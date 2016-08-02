@@ -14,6 +14,7 @@ function newModule(data) {
             licenseText: null,
             noticeFile: null,
             noticeText: null,
+            licenseURLs: [],
             website: null
         }, data || {});
 }

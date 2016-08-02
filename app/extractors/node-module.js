@@ -2,6 +2,7 @@
 
 const path = require("path");
 const fs = require("fs");
+
 const spdxParse = require("spdx-expression-parse");
 const Q = require("q");
 
@@ -16,8 +17,8 @@ function _getPackageJsonInformations(modules) {
         if (pkg.license && typeof pkg.license == "string") {
             module.license = pkg.license;
             _getSpdxLicenseInformation(module.license).forEach(function(license) {
-                module.licenseURLs.push('https://spdx.org/licenses/' + license + '.html');
-            })
+                module.licenseURLs.push("https://spdx.org/licenses/" + license + ".html");
+            });
         }
         else if (pkg.license && Array.isArray(pkg.license) || pkg.licenses && Array.isArray(pkg.licenses)) {
             let licenses = (pkg.license) ? pkg.license : pkg.licenses;
@@ -62,7 +63,7 @@ function _getSpdxLicenseInformation(license) {
     var licenses = [];
     try {
         var tree;
-        if (typeof license === 'string') {
+        if (typeof license === "string") {
             tree = spdxParse(license);
         } else {
             tree = license;
@@ -77,7 +78,7 @@ function _getSpdxLicenseInformation(license) {
             licenses = licenses.concat(_getSpdxLicenseInformation(tree.right));
         }
     } catch(e) {
-        console.warn('Unable to parse license: ', license);
+        console.warn(`WARNING: Unable to parse license "${license}"`);
     }
     return licenses;
 }
