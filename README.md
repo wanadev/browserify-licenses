@@ -113,3 +113,8 @@ Full output includes complete license:
 
     [... output truncated for this example ...]
 
+
+## Changelog
+
+* **1.4.1:** Updates `yargs` dependency
+
