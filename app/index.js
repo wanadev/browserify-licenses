@@ -38,9 +38,12 @@ function _sort(modules) {
 }
 
 module.exports = function(options) {
-    return _source(options.browserify, options.modules, options.json, options.ignore)
+    var resultingPromise = _source(options.browserify, options.modules, options.json, options.ignore)
         .then(_filterIgnored.bind(undefined, options.ignore))
         .then(_sort)
-        .then(formats[options.format])
-        .then(options.output ? writers.file.bind(undefined, options.output) : writers.stdout);
+        .then(formats[options.format]);
+    if (options.output != 'none') {
+        resultingPromise.then(options.output ? writers.file.bind(undefined, options.output) : writers.stdout);
+    }
+    return resultingPromise;
 };
