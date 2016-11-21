@@ -11,7 +11,7 @@ function _source(browserify, modules, json, ignore) {
     var sourcePromises = [];
 
     if (browserify) {
-        sourcePromises.push(sources.browserify(browserify, ignore));
+        sourcePromises.push(sources.browserify.external(browserify, ignore));
     }
 
     if (modules) {
