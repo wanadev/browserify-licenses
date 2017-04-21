@@ -55,10 +55,26 @@ function _fileListToModule(files) {
     return modules;
 }
 
-function sourceBrowserify(entryPointsPath, ignore) {
+function sourceBrowserifyExternal(entryPointsPath, ignore) {
     return _listBundledFiles(entryPointsPath, ignore)
         .then(_fileListToModule)
         .then(extractors.nodeModule);
 }
 
-module.exports = sourceBrowserify;
+function sourceBrowserifyInternal(entryPointsPath, ignore) {
+    return _listBundledFiles(entryPointsPath, ignore)
+        .then(function (files) {
+            var modules = [];
+            for (let i = 0 ; i < files.length ; i++) {
+                if (files[i].indexOf("node_modules") < 0 && files[i] != entryPointsPath) {
+                    modules.push(files[i]);
+                }
+            }
+            return modules;
+        });
+}
+
+module.exports = {
+    external: sourceBrowserifyExternal,
+    internal: sourceBrowserifyInternal
+};
