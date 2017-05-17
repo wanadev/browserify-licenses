@@ -27,7 +27,7 @@
     "q": "^1.4.1",
     "table": "^4.0.0",
     "through2": "^2.0.1",
-    "yargs": "^6.0.0",
+    "yargs": "^7.0.2",
     "spdx-expression-parse": "^1.0.2"
   },
   "devDependencies": {
