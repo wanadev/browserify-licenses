@@ -5,6 +5,8 @@
 [![License](http://img.shields.io/npm/l/browserify-licenses.svg?style=flat)](https://github.com/wanadev/browserify-licenses/blob/master/LICENSE)
 [![Dependencies](https://img.shields.io/david/wanadev/browserify-licenses.svg?maxAge=2592000)]()
 [![Dev Dependencies](https://img.shields.io/david/dev/wanadev/browserify-licenses.svg?maxAge=2592000)]()
+[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/browserify-licenses.svg)](https://greenkeeper.io/)
+
 
 > Extracts licenses of third party modules used in a browserify bundle
 
