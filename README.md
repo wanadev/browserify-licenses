@@ -1,12 +1,12 @@
 # Browserify License Extractor
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/browserify-licenses.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/wanadev/browserify-licenses.svg?branch=master)](https://travis-ci.org/wanadev/browserify-licenses)
 [![NPM Version](http://img.shields.io/npm/v/browserify-licenses.svg?style=flat)](https://www.npmjs.com/package/browserify-licenses)
 [![License](http://img.shields.io/npm/l/browserify-licenses.svg?style=flat)](https://github.com/wanadev/browserify-licenses/blob/master/LICENSE)
 [![Dependencies](https://img.shields.io/david/wanadev/browserify-licenses.svg?maxAge=2592000)]()
 [![Dev Dependencies](https://img.shields.io/david/dev/wanadev/browserify-licenses.svg?maxAge=2592000)]()
+[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/browserify-licenses.svg)](https://greenkeeper.io/)
+
 
 > Extracts licenses of third party modules used in a browserify bundle
 
