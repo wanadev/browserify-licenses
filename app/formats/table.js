@@ -1,6 +1,6 @@
 "use strict";
 
-const table = require("table").default;
+const table = require("table").table;
 const getBorderCharacters = require("table").getBorderCharacters;
 const chalk = require("chalk");
 
