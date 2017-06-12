@@ -12,6 +12,9 @@ function _getPackageJsonInformations(modules) {
         let pkg = require(path.join(module.path, "package.json"));
 
         module.version = pkg.version;
+        if (module.version.match(/^https?:\/\/.+-([0-9]+\.[0-9]+\.[0-9]+(-[a-z0-9._-]+)?)\.tgz$/i)) {
+            module.version = module.version.replace(/^https?:\/\/.+-([0-9]+\.[0-9]+\.[0-9]+(-[a-z0-9._-]+)?)\.tgz$/i, "$1");
+        }
 
         module.licenseURLs = [];
         if (pkg.license && typeof pkg.license == "string") {
