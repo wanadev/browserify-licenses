@@ -118,6 +118,7 @@ Full output includes complete license:
 
 ## Changelog
 
+* **1.4.5:** Fixes version parsing with npm 5, updates dependencies
 * **1.4.4:** Updates Yargs and Table deps
 * **1.4.3:** Updates Browserify to 14.0.0
 * **1.4.2:** Works on Microsoft Windows™ system

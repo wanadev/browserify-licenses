@@ -1,6 +1,6 @@
 {
   "name": "browserify-licenses",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Extracts licenses of third party modules used in a browserify bundle",
   "main": "app/index.js",
   "scripts": {
