@@ -22,7 +22,7 @@
   "license": "BSD-3-Clause",
   "dependencies": {
     "browserify": "^14.4.0",
-    "chalk": "^1.1.3",
+    "chalk": "^2.0.0",
     "lodash": "^4.13.1",
     "q": "^1.4.1",
     "spdx-expression-parse": "^1.0.2",
