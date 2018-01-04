@@ -21,7 +21,7 @@
   "author": "Wanadev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "browserify": "^14.4.0",
+    "browserify": "^15.0.0",
     "chalk": "^1.1.3",
     "lodash": "^4.13.1",
     "q": "^1.4.1",
