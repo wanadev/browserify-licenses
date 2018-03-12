@@ -43,8 +43,8 @@ function _fileListToModule(files) {
         }
         let file = files[i];
         let module = helpers.newModule({
-            name: file.replace(/^(.*node_modules[/\\]([^/\\]+)[/\\]).*$/, "$2"),
-            path: file.replace(/^(.*node_modules[/\\]([^/\\]+)[/\\]).*$/, "$1"),
+            name: file.replace(/^(.*node_modules[/\\]((@[^/\\]+[/\\])?[^/\\]+)[/\\]).*$/, "$2"),
+            path: file.replace(/^(.*node_modules[/\\]((@[^/\\]+[/\\])?[^/\\]+)[/\\]).*$/, "$1"),
         });
         module.website = `https://www.npmjs.com/package/${module.name}`;
         if (!modulePaths[module.path]) {
