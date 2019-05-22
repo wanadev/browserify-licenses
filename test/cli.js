@@ -49,21 +49,21 @@ describe("brlicenses", function() {
     it("can extract licenses from a browserify entry point using positional arguments", function() {
         return helpers.execJson("bin/brlicenses test/samples/browserify-test.js test/samples/extra.js -f json")
             .then(function(modules) {
-                expect(modules).to.have.length(5);
+                expect(modules).to.have.length(6);
             });
     });
 
     it("can extract licenses from a browserify entry point using --browserify option", function() {
         return helpers.execJson("bin/brlicenses --browserify test/samples/browserify-test.js test/samples/extra.js -f json")
             .then(function(modules) {
-                expect(modules).to.have.length(5);
+                expect(modules).to.have.length(6);
             });
     });
 
     it("can extract licenses from a browserify entry point using -b option", function() {
         return helpers.execJson("bin/brlicenses -b test/samples/browserify-test.js test/samples/extra.js -f json")
             .then(function(modules) {
-                expect(modules).to.have.length(5);
+                expect(modules).to.have.length(6);
             });
     });
 
