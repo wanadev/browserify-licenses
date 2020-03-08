@@ -28,7 +28,7 @@
     "spdx-expression-parse": "^3.0.0",
     "table": "^5.3.3",
     "through2": "^3.0.1",
-    "yargs": "^13.2.4"
+    "yargs": "^15.3.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
