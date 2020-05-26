@@ -118,6 +118,7 @@ Full output includes complete license:
 
 ## Changelog
 
+* **1.4.7:** Fixes issue with newer node version (#41)
 * **1.4.6:** Handle namespaced packages in browserify source ("@namespace/package"), updates dependencies
 * **1.4.5:** Fixes version parsing with npm 5, updates dependencies
 * **1.4.4:** Updates Yargs and Table deps
