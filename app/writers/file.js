@@ -7,7 +7,7 @@ const Q = require("q");
 function writerFile(filePath, text) {
     var fd = fs.openSync(filePath, "w");
     fs.writeSync(fd, text);
-    fs.close(fd);
+    fs.closeSync(fd);
     return Q(text);
 
 }
