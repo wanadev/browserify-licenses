@@ -21,18 +21,18 @@
   "author": "Wanadev",
   "license": "BSD-3-Clause",
   "dependencies": {
-    "browserify": "^16.2.3",
+    "browserify": "^16.5.1",
     "chalk": "^2.4.2",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.15",
     "q": "^1.5.1",
-    "spdx-expression-parse": "^3.0.0",
-    "table": "^5.3.3",
+    "spdx-expression-parse": "^3.0.1",
+    "table": "^5.4.6",
     "through2": "^3.0.1",
-    "yargs": "^13.2.4"
+    "yargs": "^13.3.2"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",
-    "jshint": "^2.10.2",
-    "mocha": "^6.1.4"
+    "jshint": "^2.11.1",
+    "mocha": "^6.2.3"
   }
 }
