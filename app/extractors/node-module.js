@@ -9,7 +9,7 @@ const Q = require("q");
 function _getPackageJsonInformations(modules) {
     for (let i = 0 ; i < modules.length ; i++) {
         let module = modules[i];
-        let pkg = require(path.join(module.path, "package.json"));
+        let pkg = JSON.parse(fs.readFileSync(path.join(module.path, "package.json")));
 
         module.version = pkg.version;
         if (module.version.match(/^https?:\/\/.+-([0-9]+\.[0-9]+\.[0-9]+(-[a-z0-9._-]+)?)\.tgz$/i)) {

@@ -18,6 +18,13 @@ var argv = yargs
         normalize: true
     })
 
+    .option("webpack", {
+        describe: "Extract licenses from a Webpack profile file",
+        alias: "w",
+        type: "array",
+        normalize: true
+    })
+
     .option("modules", {
         describe: "Extract licenses of the given modules",
         alias: "m",
@@ -61,7 +68,7 @@ var argv = yargs
     .locale("en")
     .argv;
 
-if (!argv.browserify && !argv.modules && !argv.json && argv._.length === 0) {
+if (!argv.browserify && !argv.webpack && !argv.modules && !argv.json && argv._.length === 0) {
     yargs.showHelp();
     process.exit(1);
 }

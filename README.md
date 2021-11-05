@@ -27,6 +27,7 @@ bundled, and then it extracts the corresponding licenses to various formats.
     Options:
         --browserify, -b  Extract licenses used in a bundle using Browserify to find
                           included modules (this option can be ommited)
+        --webpack, -w     Extract licenses from a Webpack profile file
         --modules, -m     Extract licenses of the given modules
         --json, -j        Extract licenses of the given JSON files (previously
                           generated with the --format=json option)
@@ -49,6 +50,11 @@ bundled, and then it extracts the corresponding licenses to various formats.
         --json additional-licenses.json \
         --format=full \
         --output=CREDITS.txt
+
+## Example 2: Webpack
+
+    webpack --profile --json > profile.json
+    brlicenses --webpack profile.json
 
 
 ## Sample Output

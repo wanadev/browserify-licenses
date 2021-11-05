@@ -3,5 +3,6 @@
 module.exports = {
     browserify: require("./browserify.js"),
     modules: require("./modules.js"),
-    json: require("./json.js")
+    json: require("./json.js"),
+    webpack: require("./webpack.js")
 };

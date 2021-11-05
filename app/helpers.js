@@ -23,7 +23,29 @@ function getModulePath(moduleName) {
     return path.dirname(require.resolve(`${moduleName}/package.json`));
 }
 
+function fileListToModule(files) {
+    var modules = [];
+    var modulePaths = {};
+    for (let i = 0 ; i < files.length ; i++) {
+        if (files[i].indexOf("node_modules") < 0) {
+            continue;
+        }
+        let file = files[i];
+        let module = newModule({
+            name: file.replace(/^(.*node_modules[/\\]((@[^/\\]+[/\\])?[^/\\]+)[/\\]).*$/, "$2"),
+            path: file.replace(/^(.*node_modules[/\\]((@[^/\\]+[/\\])?[^/\\]+)[/\\]).*$/, "$1"),
+        });
+        module.website = `https://www.npmjs.com/package/${module.name}`;
+        if (!modulePaths[module.path]) {
+            modulePaths[module.path] = true;
+            modules.push(module);
+        }
+    }
+    return modules;
+}
+
 module.exports = {
     newModule: newModule,
-    getModulePath: getModulePath
+    getModulePath: getModulePath,
+    fileListToModule: fileListToModule
 };

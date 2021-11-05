@@ -7,11 +7,17 @@ const sources = require("./sources");
 const formats = require("./formats");
 const writers = require("./writers");
 
-function _source(browserify, modules, json, ignore) {
+function _source(browserify, webpack, modules, json, ignore) {
     var sourcePromises = [];
 
     if (browserify) {
         sourcePromises.push(sources.browserify(browserify, ignore));
+    }
+
+    if (webpack) {
+        for (var i = 0 ; i < webpack.length ; i += 1) {
+            sourcePromises.push(sources.webpack(webpack[i], ignore));
+        }
     }
 
     if (modules) {
@@ -37,10 +43,15 @@ function _sort(modules) {
     return lodash.sortBy(modules, m => m.name.toLowerCase());
 }
 
+function _uniq(modules) {
+    return lodash.uniqBy(modules, m => `${m.name};${m.version}`);
+}
+
 module.exports = function(options) {
-    return _source(options.browserify, options.modules, options.json, options.ignore)
+    return _source(options.browserify, options.webpack, options.modules, options.json, options.ignore)
         .then(_filterIgnored.bind(undefined, options.ignore))
         .then(_sort)
+        .then(_uniq)
         .then(formats[options.format])
         .then(options.output ? writers.file.bind(undefined, options.output) : writers.stdout);
 };
