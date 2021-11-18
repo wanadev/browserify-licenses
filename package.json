@@ -16,7 +16,7 @@
   },
   "directories": {
     "bin": "./bin",
-    "lib": "./src"
+    "lib": "./app"
   },
   "author": "Wanadev",
   "license": "BSD-3-Clause",
