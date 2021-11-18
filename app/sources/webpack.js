@@ -8,7 +8,7 @@ const extractors = require("../extractors");
 function _ExtractBundledFiles(webpackProfile, ignore) {
     return Q.Promise(function(resolve, reject) {
         var json = JSON.parse(fs.readFileSync(webpackProfile));
-        var files = []
+        var files = [];
 
         for (let chunkId = 0 ; chunkId < json.chunks.length ; chunkId += 1) {
             const chunk = json.chunks[chunkId];
