@@ -123,7 +123,7 @@ Full output includes complete license:
 
 
 ## Changelog
-
+* **1.5.1:** Update dependencies
 * **1.5.0:** Add Webpack support. Update Browserify to v17.x
 * **1.4.8:** Update dependencies
 * **1.4.7:** Fixes issue with newer node version (#41)
